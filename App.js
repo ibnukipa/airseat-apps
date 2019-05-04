@@ -20,7 +20,7 @@ export default class App extends React.Component {
 		} else {
 			return (
 				<View style={styles.container}>
-					{Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
+					{Platform.OS === 'ios' && <StatusBar barStyle="light-content"/>}
 					<AppNavigator/>
 				</View>
 			)
@@ -32,7 +32,6 @@ export default class App extends React.Component {
 			Asset.loadAsync([
 				require('./assets/images/icon.png'),
 				require('./assets/images/logo.png'),
-				require('./assets/images/logo_text.png'),
 				require('./assets/images/logo_text_invert.png')
 			]),
 			Font.loadAsync({

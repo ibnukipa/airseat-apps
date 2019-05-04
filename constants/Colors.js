@@ -1,21 +1,8 @@
-const tintColor = '#2f95dc'
-
-export default {
-	tintColor,
-	tabIconDefault: '#ccc',
-	tabIconSelected: tintColor,
-	tabBar: '#fefefe',
-	errorBackground: 'red',
-	errorText: '#fff',
-	warningBackground: '#EAEB5E',
-	warningText: '#666804',
-	noticeBackground: tintColor,
-	noticeText: '#fff'
-}
-
 export const
 	WHITE = '#ffffff',
+	WHITE_CALM = '#fbfbfb',
 	GREY = '#434343',
+	GREY_LIGHT = '#eceff1',
 	RED = '#f44336',
 	RED_DARK = '#b71c1c',
 	RED_LIGHT = '#ffcdd2',
@@ -27,4 +14,6 @@ export const
 	BLUE_LIGHT = '#bbdefb',
 	INDIGO = '#3f51b5',
 	INDIGO_DARK = '#1a237e',
-	INDIGO_LIGHT = '#c5cae9'
+	INDIGO_LIGHT = '#c5cae9',
+	PRIMARY = '#5b86e5',
+	PRIMARY_TINT = '#36d1dc'

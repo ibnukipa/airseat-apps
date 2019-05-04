@@ -1,9 +1,13 @@
 import Text from './Text'
 import Icon from './Icon'
 import Image from './Image'
+import Container from './Container'
+import CardFloat from './CardFloat'
 
 export {
 	Text,
 	Icon,
-	Image
+	Image,
+	CardFloat,
+	Container
 }

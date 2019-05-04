@@ -5,120 +5,36 @@ import {
 	StyleSheet,
 	View
 } from 'react-native'
-import {Text, Image} from '../components'
+import {Text, Image, CardFloat, Container} from '../components'
+import {DEEP_BLUE, DEEP_BLUE_DARK, PRIMARY, PRIMARY_TINT, WHITE} from '../constants/Colors'
+import {HP5, WP4} from '../constants/Sizes'
 
 export default class HomeScreen extends React.Component {
 	static navigationOptions = {
 		headerTitle: (
-			<View style={{flex:1, flexDirection:'row', justifyContent:'center'}}>
-				<Image aspectRatio={315/85} source={require('../assets/images/logo_text_invert.png')}/>
+			<View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+				<Image aspectRatio={315 / 85} imageStyle={{height: HP5}} source={require('../assets/images/logo_text_invert.png')}/>
 			</View>
-		),
+		)
 	}
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-					<Text style={styles.tabBarInfoText}>Content</Text>
+			<Container colors={[PRIMARY, PRIMARY_TINT]}>
+				<ScrollView contentContainerStyle={styles.contentContainer}>
+					<Text color={WHITE} onPress={() => this.props.navigation.navigate('Result')}>Content</Text>
 				</ScrollView>
 
-				<View style={styles.tabBarInfoContainer}>
-					<Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-					<View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-						<Text style={styles.codeHighlightText}>navigation/MainTabNavigator.js</Text>
-					</View>
-				</View>
-			</View>
+				<CardFloat>
+					<Text>This is a tab bar. You can edit it in:</Text>
+				</CardFloat>
+			</Container>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff'
-	},
-	developmentModeText: {
-		marginBottom: 20,
-		color: 'rgba(0,0,0,0.4)',
-		fontSize: 14,
-		lineHeight: 19,
-		textAlign: 'center'
-	},
 	contentContainer: {
-		paddingTop: 30
+		padding: WP4
 	},
-	welcomeContainer: {
-		alignItems: 'center',
-		marginTop: 10,
-		marginBottom: 20
-	},
-	welcomeImage: {
-		width: 100,
-		height: 80,
-		resizeMode: 'contain',
-		marginTop: 3,
-		marginLeft: -10
-	},
-	getStartedContainer: {
-		alignItems: 'center',
-		marginHorizontal: 50
-	},
-	homeScreenFilename: {
-		marginVertical: 7
-	},
-	codeHighlightText: {
-		color: 'rgba(96,100,109, 0.8)'
-	},
-	codeHighlightContainer: {
-		backgroundColor: 'rgba(0,0,0,0.05)',
-		borderRadius: 3,
-		paddingHorizontal: 4
-	},
-	getStartedText: {
-		fontSize: 17,
-		color: 'rgba(96,100,109, 1)',
-		lineHeight: 24,
-		textAlign: 'center'
-	},
-	tabBarInfoContainer: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
-		...Platform.select({
-			ios: {
-				shadowColor: 'black',
-				shadowOffset: {height: -3},
-				shadowOpacity: 0.1,
-				shadowRadius: 3
-			},
-			android: {
-				elevation: 20
-			}
-		}),
-		alignItems: 'center',
-		backgroundColor: '#fbfbfb',
-		paddingVertical: 20
-	},
-	tabBarInfoText: {
-		fontSize: 17,
-		color: 'rgba(96,100,109, 1)',
-		textAlign: 'center'
-	},
-	navigationFilename: {
-		marginTop: 5
-	},
-	helpContainer: {
-		marginTop: 15,
-		alignItems: 'center'
-	},
-	helpLink: {
-		paddingVertical: 15
-	},
-	helpLinkText: {
-		fontSize: 14,
-		color: '#2e78b7'
-	}
 })
