@@ -1,13 +1,12 @@
 import React from 'react'
 import {
-	Platform,
 	ScrollView,
 	StyleSheet,
 	View
 } from 'react-native'
-import {Text, Image, CardFloat, Icon} from '../components'
+import {Text, CardFloat} from '../components'
 import {WHITE} from '../constants/Colors'
-import {HP5, WP10, WP4} from '../constants/Sizes'
+import {WP4} from '../constants/Sizes'
 
 export default class GenerateScreen extends React.Component {
 	static navigationOptions = {

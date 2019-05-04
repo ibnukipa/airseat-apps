@@ -6,7 +6,7 @@ import {
 	View
 } from 'react-native'
 import {Text, Image, CardFloat, Container} from '../components'
-import {DEEP_BLUE, DEEP_BLUE_DARK, PRIMARY, PRIMARY_TINT, WHITE} from '../constants/Colors'
+import {PRIMARY, PRIMARY_TINT, WHITE} from '../constants/Colors'
 import {HP5, WP4} from '../constants/Sizes'
 
 export default class HomeScreen extends React.Component {

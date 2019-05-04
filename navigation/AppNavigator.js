@@ -4,9 +4,7 @@ import {createAppContainer, createStackNavigator} from 'react-navigation'
 import { fromRight } from 'react-navigation-transitions'
 import HomeScreen from '../screens/HomeScreen'
 import GenerateScreen from '../screens/GenerateScreen'
-import {DEEP_BLUE, DEEP_BLUE_DARK, INDIGO, PRIMARY, WHITE} from '../constants/Colors'
-import {Image, Text} from '../components'
-import {HP5, WP4} from '../constants/Sizes'
+import {PRIMARY, WHITE} from '../constants/Colors'
 
 export const HomeStack = createStackNavigator({
 	Home: {

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Platform, StyleSheet, View} from 'react-native'
-import {GREY_LIGHT, WHITE_CALM} from '../constants/Colors'
+import {WHITE_CALM} from '../constants/Colors'
 
 export default class CardFloat extends React.Component {
 	render() {
