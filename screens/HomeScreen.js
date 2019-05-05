@@ -12,11 +12,8 @@ import {times, map, reduce, forEach} from 'lodash-es'
 export default class HomeScreen extends React.Component {
 	state = {
 		seatChartRules: [
-			[1, 5],
 			[2, 5],
-			[3, 7],
-			[4, 5],
-			[5, 5]
+			[3, 5],
 		],
 		passengers: 30
 	}
@@ -49,7 +46,7 @@ export default class HomeScreen extends React.Component {
 					let type = 'M'
 					if(
 						(i === 0 && col === 0) ||
-						(i === seatChartLastIndex && col === seatChartLastIndex)
+						(i === seatChartLastIndex && col === seatChartColLastIndex)
 					) type = 'W'
 					else if(
 						(i === 0 && col === seatChartColLastIndex) ||
@@ -80,7 +77,7 @@ export default class HomeScreen extends React.Component {
 		} = this.state
 		const wmaSeats = this._calculateWMASeats()
 		const totalColumns = this._calculateTotalColumn()
-		const widthOfSeat = (100 - (2 * wmaSeats.length)) / this._calculateTotalColumn()
+		const widthOfSeat = (100 - (2 * seatChartRules.length)) / this._calculateTotalColumn()
 		return (
 			<Container>
 				<ScrollView contentContainerStyle={styles.contentContainer}>
@@ -92,22 +89,28 @@ export default class HomeScreen extends React.Component {
 									map(seatChartRules, (containerSeat, i) => {
 										const totalColumnsInBlock = containerSeat[0]
 										const totalRowsInBlock = containerSeat[1]
-										const dimensionOfSeat = `${100 / totalColumnsInBlock}%`
+										const dimensionOfSeat = `${(100 / totalColumnsInBlock) - 1}%`
 										return (
 											<View key={i}
 											      style={[styles.airplaneSeatContainer, {width: `${widthOfSeat * totalColumnsInBlock}%`}]}>
 												{
 													times(totalRowsInBlock , (rowIndex) => {
-														return times(totalColumnsInBlock, (colIndex) => {
-															return (
-																<View key={`${i}${rowIndex}${colIndex}`}
-																      style={[styles.airplaneSeat, {width: dimensionOfSeat}]}>
-																	<View style={styles.square}>
-																		<Text size='tiny' centered>{(wmaSeats[i][rowIndex][colIndex]).type}</Text>
-																	</View>
-																</View>
-															)
-														})
+														return (
+															<View key={`${i}${rowIndex}`} style={{justifyContent: 'space-around', width: '100%', flexDirection: 'row'}}>
+																{
+																	times(totalColumnsInBlock, (colIndex) => {
+																		return (
+																			<View key={`${i}${colIndex}`}
+																			      style={[styles.airplaneSeat, {width: dimensionOfSeat}]}>
+																				<View style={styles.square}>
+																					<Text size='tiny' centered>{(wmaSeats[i][rowIndex][colIndex]).type}</Text>
+																				</View>
+																			</View>
+																		)
+																	})
+																}
+															</View>
+														)
 													})
 												}
 											</View>
@@ -162,6 +165,8 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 		backgroundColor: WHITE_CALM,
 		borderColor: GREY_LIGHT,
-		borderWidth: 1
+		borderWidth: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
 })
