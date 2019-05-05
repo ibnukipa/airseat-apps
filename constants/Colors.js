@@ -4,6 +4,7 @@ export const
 	WHITE = '#ffffff',
 	WHITE_CALM = '#fbfbfb',
 	GREY = '#434343',
+	GREY_CALM = '#cfd8dc',
 	GREY_LIGHT = '#eceff1',
 	RED = '#f44336',
 	RED_DARK = '#b71c1c',

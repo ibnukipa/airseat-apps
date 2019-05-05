@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {SafeAreaView} from 'react-native'
-import {LinearGradient} from 'expo'
+import {Header}from 'react-navigation'
+import {SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native'
+import {isIphoneX} from 'react-native-iphone-x-helper'
+import {LinearGradient, Constants} from 'expo'
 import {PRIMARY, PRIMARY_TINT, WHITE_CALM} from '../constants/Colors'
 
 const propsType = {
@@ -24,17 +26,24 @@ const Container = (props) => {
 	} = props
 	return (
 		<SafeAreaView style={{flex: 1, backgroundColor: WHITE_CALM}}>
-			<LinearGradient
-				start={start}
-				end={end}
-				colors={colors}
-				style={[
-					{flex: 1},
-					style
-				]}
+			<KeyboardAvoidingView
+				style={{flex: 1}}
+				keyboardVerticalOffset={Platform.OS === 'ios' ? Header.HEIGHT + (isIphoneX() ? 20 : 0) : 0}
+				behavior={Platform.OS === 'ios' ? 'padding' : null}
+				enabled
 			>
-				{children}
-			</LinearGradient>
+				<LinearGradient
+					start={start}
+					end={end}
+					colors={colors}
+					style={[
+						{flex: 1},
+						style
+					]}
+				>
+					{children}
+				</LinearGradient>
+			</KeyboardAvoidingView>
 		</SafeAreaView>
 	)
 }

@@ -7,27 +7,22 @@ import {GREY} from '../constants/Colors'
 import {FONTS} from '../constants/Fonts'
 
 const propsType = {
-	key: PropTypes.any,
 	size: PropTypes.oneOf(keys(FONT_SIZE)),
 	color: PropTypes.string,
 	type: PropTypes.oneOf(keys(FONTS)),
 	weight: PropTypes.number,
 	centered: PropTypes.bool,
-	highlight: PropTypes.bool,
 	onPress: PropTypes.func,
 	style: PropTypes.any,
-	searchWords: PropTypes.array
 }
 
 const propsDefault = {
-	key: undefined,
 	size: 'small',
 	color: GREY,
 	type: 'Raleway',
 	weight: 300,
 	centered: false,
 	onPress: null,
-	searchWords: []
 }
 
 const Text = (props) => {

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Platform, StyleSheet, View} from 'react-native'
 import {WHITE_CALM} from '../constants/Colors'
+import {HP2, WP4} from '../constants/Sizes'
 
 export default class CardFloat extends React.Component {
 	render() {
@@ -17,10 +18,6 @@ export default class CardFloat extends React.Component {
 
 const styles = StyleSheet.create({
 	tabBarInfoContainer: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
 		...Platform.select({
 			ios: {
 				shadowColor: 'black',
@@ -34,6 +31,7 @@ const styles = StyleSheet.create({
 		}),
 		alignItems: 'center',
 		backgroundColor: WHITE_CALM,
-		paddingVertical: 20
+		paddingVertical: 10,
+		paddingHorizontal: WP4
 	},
 })

@@ -51,7 +51,7 @@ export const FONT_SIZE = {
 	medium: WP408, //15
 	large: WP502,  //16
 	huge: WP509, //18
-	massive: WP606 //20
+	massive: WP8 //20
 }
 
 export const ICON_SIZE = {

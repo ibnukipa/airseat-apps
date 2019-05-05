@@ -47,7 +47,8 @@ export default class App extends React.Component {
 				'RalewayMedium': require('./assets/fonts/Raleway-Medium.ttf'),
 				'RalewaySemiBold': require('./assets/fonts/Raleway-SemiBold.ttf'),
 				'RalewayBold': require('./assets/fonts/Raleway-Bold.ttf'),
-				'RalewayExtraBold': require('./assets/fonts/Raleway-ExtraBold.ttf')
+				'RalewayExtraBold': require('./assets/fonts/Raleway-ExtraBold.ttf'),
+				'GraduateRegular': require('./assets/fonts/Graduate-Regular.ttf')
 			})
 		])
 	}

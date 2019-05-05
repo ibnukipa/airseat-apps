@@ -5,7 +5,7 @@ import {noop} from 'lodash-es'
 import {TouchableOpacity} from 'react-native'
 import {LinearGradient} from 'expo'
 import {GREY_LIGHT, PRIMARY, PRIMARY_TINT, WHITE, WHITE_CALM} from '../constants/Colors'
-import {WP4} from '../constants/Sizes'
+import {WP2, WP4} from '../constants/Sizes'
 import {TOUCH_OPACITY} from '../constants/Styles'
 import Text from './Text'
 import Icon from './Icon'
@@ -39,7 +39,7 @@ const Button = (props) => {
 		onPress
 	} = props
 	return (
-		<TouchableOpacity activeOpacity={TOUCH_OPACITY} onPress={onPress} style={{
+		<TouchableOpacity activeOpacity={TOUCH_OPACITY} onPress={onPress} style={[{
 			...Platform.select({
 				ios: {
 					shadowColor: 'black',
@@ -51,19 +51,17 @@ const Button = (props) => {
 					elevation: 20
 				}
 			}),
-		}}>
+		}, style]}>
 			<LinearGradient
 				start={start}
 				end={end}
 				colors={colors}
 				style={[
 					{
-						borderColor: GREY_LIGHT, borderWidth: 0.5,
-						backgroundColor, paddingHorizontal: WP4, paddingVertical: 10,
+						backgroundColor, paddingHorizontal: WP4, paddingVertical: WP2,
 						justifyContent: 'space-between', borderRadius: 8,
 						flexDirection: 'row'
-					},
-					style
+					}
 				]}
 			>
 				<View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -72,9 +70,8 @@ const Button = (props) => {
 							<Icon centered color={WHITE} name={icon.name} type={icon.type}/>
 						)
 					}
-					<Text color={WHITE} style={{marginLeft: icon ? WP4 : 0}} size='large'>{text}</Text>
+					<Text color={WHITE} style={{marginLeft: icon ? WP4 : 0}}>{text}</Text>
 				</View>
-				<Icon centered color={WHITE} size='large' name='chevron-thin-right' type='Entypo'/>
 			</LinearGradient>
 		</TouchableOpacity>
 	)
