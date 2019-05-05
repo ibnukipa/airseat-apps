@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {SafeAreaView} from 'react-native'
 import {LinearGradient} from 'expo'
-import {WHITE} from '../constants/Colors'
+import {PRIMARY, PRIMARY_TINT, WHITE_CALM} from '../constants/Colors'
 
 const propsType = {
 	colors: PropTypes.array
@@ -10,7 +11,7 @@ const propsType = {
 const propsDefault = {
 	start: [0, 0],
 	end: [0, 1],
-	colors: [WHITE, WHITE],
+	colors: [PRIMARY, PRIMARY_TINT],
 }
 
 const Container = (props) => {
@@ -22,17 +23,19 @@ const Container = (props) => {
 		children,
 	} = props
 	return (
-		<LinearGradient
-			start={start}
-			end={end}
-			colors={colors}
-			style={[
-				{flex: 1},
-				style
-			]}
-		>
-			{children}
-		</LinearGradient>
+		<SafeAreaView style={{flex: 1, backgroundColor: WHITE_CALM}}>
+			<LinearGradient
+				start={start}
+				end={end}
+				colors={colors}
+				style={[
+					{flex: 1},
+					style
+				]}
+			>
+				{children}
+			</LinearGradient>
+		</SafeAreaView>
 	)
 }
 

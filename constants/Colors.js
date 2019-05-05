@@ -1,4 +1,6 @@
 export const
+	WHITE80 = 'rgba(255, 255, 255, .8)',
+	WHITE05 = 'rgba(255, 255, 255, .2)',
 	WHITE = '#ffffff',
 	WHITE_CALM = '#fbfbfb',
 	GREY = '#434343',

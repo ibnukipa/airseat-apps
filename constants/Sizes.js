@@ -1,8 +1,11 @@
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen'
 
 export const
+	HP2 = hp('2%'),
 	HP5 = hp('5%'),
+	HP8 = hp('8%'),
 	HP10 = hp('10%'),
+	HP15 = hp('15%'),
 	HP20 = hp('20%'),
 	HP25 = hp('25%'),
 	HP30 = hp('30%'),
@@ -13,6 +16,8 @@ export const
 	HP100 = hp('100%'),
 	WP301 = wp('3.1%'),
 	WP308 = wp('3.8%'),
+	WP1 = wp('1%'),
+	WP2 = wp('2%'),
 	WP4 = wp('4%'),
 	WP405 = wp('4.5%'),
 	WP408 = wp('4.8%'),
