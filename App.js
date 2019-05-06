@@ -1,7 +1,9 @@
 import React from 'react'
-import {Platform, StatusBar, StyleSheet, View} from 'react-native'
-import {AppLoading, Asset, Font, Icon, Constants} from 'expo'
+import {StatusBar, StyleSheet, View} from 'react-native'
+import {AppLoading, Asset, Font, Icon} from 'expo'
+import {Provider} from 'react-redux'
 import AppNavigator from './navigation/AppNavigator'
+import stores from './storage/reduxStore'
 import {PRIMARY} from './constants/Colors'
 
 export default class App extends React.Component {
@@ -20,14 +22,16 @@ export default class App extends React.Component {
 			)
 		} else {
 			return (
-				<View style={styles.container}>
-					<StatusBar
-						animated
-						backgroundColor={PRIMARY}
-						barStyle='light-content'
-					/>
-					<AppNavigator/>
-				</View>
+				<Provider store={stores}>
+					<View style={styles.container}>
+						<StatusBar
+							animated
+							backgroundColor={PRIMARY}
+							barStyle='light-content'
+						/>
+							<AppNavigator/>
+					</View>
+				</Provider>
 			)
 		}
 	}

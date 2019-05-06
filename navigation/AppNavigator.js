@@ -1,19 +1,15 @@
 import React from 'react'
-import {View} from 'react-native'
 import {createAppContainer, createStackNavigator} from 'react-navigation'
-import { fromRight } from 'react-navigation-transitions'
+import {fromRight} from 'react-navigation-transitions'
 import AirplaneScreen from '../screens/AirplaneScreen'
 import AirplaneSeatMapScreen from '../screens/AirplaneSeatMapScreen'
 import {PRIMARY, WHITE} from '../constants/Colors'
 
 export const HomeStack = createStackNavigator({
-	Airplane: {
-		screen: AirplaneScreen
-	},
-	AirplaneSeatMap: {
-		screen: AirplaneSeatMapScreen
-	}
+	Airplane: AirplaneScreen,
+	AirplaneSeatMap: AirplaneSeatMapScreen
 }, {
+	initialRouteName: 'Airplane',
 	headerMode: 'float',
 	animationEnabled: true,
 	transitionConfig: () => fromRight(),
@@ -22,10 +18,10 @@ export const HomeStack = createStackNavigator({
 		headerStyle: {
 			elevation: 0,
 			backgroundColor: PRIMARY,
-			borderBottomWidth: 0,
+			borderBottomWidth: 0
 		},
 		headerBackTitle: null,
-		headerTintColor: WHITE,
+		headerTintColor: WHITE
 	}
 })
 

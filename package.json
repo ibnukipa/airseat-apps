@@ -16,12 +16,14 @@
     "expo": "^32.0.0",
     "lodash-es": "^4.17.11",
     "prop-types": "^15.7.2",
-    "react": "16.5.0",
+    "react": "^16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-iphone-x-helper": "^1.2.0",
     "react-native-responsive-screen": "^1.2.2",
     "react-navigation": "^3.0.9",
-    "react-navigation-transitions": "^1.0.10"
+    "react-navigation-transitions": "^1.0.10",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",

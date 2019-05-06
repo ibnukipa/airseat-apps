@@ -1,7 +1,7 @@
 import React from 'react'
 import {Platform, StyleSheet, View} from 'react-native'
 import {WHITE_CALM} from '../constants/Colors'
-import {HP2, WP4} from '../constants/Sizes'
+import {WP4} from '../constants/Sizes'
 
 export default class CardFloat extends React.Component {
 	render() {

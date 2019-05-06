@@ -4,25 +4,16 @@ import {
 	StyleSheet,
 	View
 } from 'react-native'
+import {connect} from 'react-redux'
 import {Text, Image, CardFloat, Container, Button, InputText} from '../components'
-import {GREY, GREY_CALM, GREY_LIGHT, WHITE, WHITE05, WHITE_CALM} from '../constants/Colors'
-import {HP5, HP80, WP1, WP100, WP2, WP20, WP25, WP4, WP50} from '../constants/Sizes'
+import {GREY_LIGHT, WHITE, WHITE05, WHITE_CALM} from '../constants/Colors'
+import {HP5, HP80, WP1, WP100, WP2, WP20, WP35, WP4, WP50} from '../constants/Sizes'
 import {times, map, reduce, forEach, slice} from 'lodash-es'
 import {SEAT_BG_COLOR, SEAT_BORDER_COLOR, SEAT_TYPE} from '../constants/Airplane'
 
-export default class AirplaneScreen extends React.Component {
-	constructor(props) {
-		super(props)
-	}
-
+class AirplaneScreen extends React.Component {
 	state = {
-		seatBlocks: [
-			[3, 2],
-			[4, 30],
-			[2, 30],
-			[3, 4]
-		],
-		passengers: '30'
+		passengers: null
 	}
 
 	static navigationOptions = {
@@ -45,8 +36,7 @@ export default class AirplaneScreen extends React.Component {
 		}), {totalColumns: 0, totalSeat: 0, totalMaxRow: 0})
 	}
 
-	_autoCheckIn = (seatBlocks, passengers) => {
-		const {totalMaxRow} = this._calculateTotalCabinSeat(seatBlocks)
+	_autoCheckIn = (seatBlocks, totalMaxRow) => {
 		const seatBlockLength = seatBlocks.length
 		const seats = []
 		const seatBlocksWithPassenger = []
@@ -62,7 +52,7 @@ export default class AirplaneScreen extends React.Component {
 				const seatBlockCol = seatBlockProperties[0]
 				const seatBlockRow = seatBlockProperties[1]
 				if (row >= seatBlockRow) {
-				} else if (i === 0) {
+				} else if (i === 0 && seatBlockCol !== 1) {
 					seatsInRow[seatBlockCol - 1] = {
 						type: seatType,
 						number: totalSeats,
@@ -79,7 +69,7 @@ export default class AirplaneScreen extends React.Component {
 						number: totalSeats,
 					}
 					totalSeats++
-				} else {
+				} else if(i === seatBlockLength - 1 && seatBlockCol !== 1) {
 					seatsInRow[lastIndexBlock + 1] = {
 						type: seatType,
 						number: totalSeats,
@@ -154,25 +144,28 @@ export default class AirplaneScreen extends React.Component {
 
 	render() {
 		const {
-			seatBlocks,
+			navigation,
+			seatMap
+		} = this.props
+		const {
 			passengers
 		} = this.state
-		const {totalColumns} = this._calculateTotalCabinSeat(seatBlocks)
-		const wmaSeatsWithPassenger = this._autoCheckIn(seatBlocks, passengers)
-		const widthOfSeat = (100 - (2 * seatBlocks.length)) / totalColumns
+		const {totalColumns, totalMaxRow} = this._calculateTotalCabinSeat(seatMap)
+		const wmaSeatsWithPassenger = this._autoCheckIn(seatMap, totalMaxRow)
+		const widthOfSeat = (100 - (2 * seatMap.length)) / totalColumns
 		return (
 			<Container>
-				<ScrollView contentContainerStyle={styles.contentContainer}>
+				<ScrollView keyboardShouldPersistTaps='handled' contentContainerStyle={styles.contentContainer}>
 					<View style={styles.airplaneHead}/>
 					<View style={styles.airplane}>
 						<View style={styles.airplaneCabin}>
 							<View style={styles.airplaneCabinFront}>
-								<Button icon={{name: 'edit', type: 'AntDesign'}} text='Seat Map'/>
+								<Button onPress={() => navigation.navigate('AirplaneSeatMap')} icon={{name: 'edit', type: 'AntDesign'}} text='Seat Map'/>
 							</View>
 							<View style={styles.airplaneCabinSeparator}/>
 							<View style={styles.airplaneCabinSeat}>
 								{
-									map(seatBlocks, (containerSeat, i) => {
+									map(seatMap, (containerSeat, i) => {
 										const totalColumnsInBlock = containerSeat[0]
 										const totalRowsInBlock = containerSeat[1]
 										const dimensionOfSeat = `${(100 / totalColumnsInBlock)}%`
@@ -181,9 +174,6 @@ export default class AirplaneScreen extends React.Component {
 												key={i}
 												style={[styles.airplaneSeatContainer, {width: `${widthOfSeat * totalColumnsInBlock}%`}]}
 											>
-												<View style={{width: '100%', marginBottom: 5}}>
-													<Text color={GREY_CALM} centered size='tiny' type='Graduate'>[{totalColumnsInBlock}, {totalRowsInBlock}]</Text>
-												</View>
 												{
 													times(totalRowsInBlock, (rowIndex) => {
 														return (
@@ -239,12 +229,16 @@ export default class AirplaneScreen extends React.Component {
 	}
 }
 
+export default connect(
+	({seat}) => ({seatMap: seat.seatMap})
+)(AirplaneScreen)
+
 const styles = StyleSheet.create({
 	contentContainer: {
 		padding: WP1
 	},
 	airplaneHead: {
-		marginTop: -WP25,
+		marginTop: -WP35,
 		backgroundColor: WHITE05,
 		height: WP50,
 		borderTopRightRadius: WP100,
