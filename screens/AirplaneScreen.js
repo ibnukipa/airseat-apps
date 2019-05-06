@@ -156,7 +156,7 @@ class AirplaneScreen extends React.Component {
 					<View style={styles.airplane}>
 						<View style={styles.airplaneCabin}>
 							<View style={styles.airplaneCabinFront}>
-								<Button onPress={() => navigation.navigate('AirplaneSeatMap')} icon={{name: 'edit', type: 'AntDesign'}}
+								<Button onPress={() => navigation.push('AirplaneSeatMap')} icon={{name: 'edit', type: 'AntDesign'}}
 								        text='Seat Map'/>
 							</View>
 							<View style={styles.airplaneCabinSeparator}/>

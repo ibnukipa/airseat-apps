@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "Airplane Seating Algorithm",
-    "slug": "riak-airplance-seating-algorithm",
+    "name": "AirSeat",
+    "slug": "airseat",
+    "description": "Airplane Seating Arrangement Algorithm with WMA Strategy",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [

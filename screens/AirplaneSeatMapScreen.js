@@ -1,6 +1,7 @@
 import React from 'react'
 import SortableList from 'react-native-sortable-list'
 import {StyleSheet, View} from 'react-native'
+import {NavigationEvents} from 'react-navigation'
 import {reduce} from 'lodash-es'
 import {connect} from 'react-redux'
 import {Text, CardFloat, Container, Button, InputText, ItemRow} from '../components'
@@ -11,7 +12,7 @@ import Icon from '../components/Icon'
 
 class AirplaneSeatMapScreen extends React.Component {
 	state = {
-		seatBlocks: this.props.seatMap || [],
+		seatBlocks: [],
 		seatRow: null,
 		seatCol: null
 	}
@@ -40,8 +41,10 @@ class AirplaneSeatMapScreen extends React.Component {
 							const {
 								seatBlocks
 							} = this.state
-							const newSeatBlocks = seatBlocks
-							newSeatBlocks.splice(index, 1)
+							const newSeatBlocks = reduce(seatBlocks, (result, value, i) => {
+								if(i!== index) result.push(value)
+								return result
+							}, [])
 							this.setState({seatBlocks: newSeatBlocks})
 						}}
 						color={RED_DARK}
@@ -60,6 +63,13 @@ class AirplaneSeatMapScreen extends React.Component {
 		} = this.state
 		return (
 			<Container>
+				<NavigationEvents
+					onDidFocus={payload => {
+						this.setState({
+							seatBlocks: this.props.seatMap || []
+						})
+					}}
+				/>
 				<View style={styles.cardContainer}>
 					<View style={styles.seatFormContainer}>
 						<View style={styles.seatInputContainer}>
