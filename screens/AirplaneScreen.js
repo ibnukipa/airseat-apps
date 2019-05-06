@@ -48,7 +48,7 @@ class AirplaneScreen extends React.Component {
 				const seatBlockCol = seatBlockProperties[0]
 				const seatBlockRow = seatBlockProperties[1]
 				if (row >= seatBlockRow) {
-				} else if (i === 0 && seatBlockCol !== 1) {
+				} else if (i === 0 && seatBlockCol !== 1 && seatBlockLength !== 1) {
 					seatsInRow[seatBlockCol - 1] = {
 						type: seatType,
 						number: totalSeats
@@ -65,7 +65,7 @@ class AirplaneScreen extends React.Component {
 						number: totalSeats
 					}
 					totalSeats++
-				} else if (i === seatBlockLength - 1 && seatBlockCol !== 1) {
+				} else if (i === seatBlockLength - 1 && seatBlockCol !== 1 && seatBlockLength !== 1) {
 					seatsInRow[lastIndexBlock + 1] = {
 						type: seatType,
 						number: totalSeats
@@ -77,7 +77,7 @@ class AirplaneScreen extends React.Component {
 			seats[row] = seatsInRow
 			row++
 		}
-
+		console.log(seats)
 		//Window seat
 		seatType = SEAT_TYPE.WINDOW
 		row = 0
@@ -94,6 +94,14 @@ class AirplaneScreen extends React.Component {
 						number: totalSeats
 					}
 					totalSeats++
+
+					if(seatBlockLength === 1) {
+						seatsInRow[lastIndexBlock + seatBlockCol] = {
+							type: seatType,
+							number: totalSeats
+						}
+						totalSeats++
+					}
 				} else if (i === seatBlockLength - 1) {
 					seatsInRow[lastIndexBlock + seatBlockCol] = {
 						type: seatType,
