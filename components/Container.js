@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Header}from 'react-navigation'
+import {Header} from 'react-navigation'
 import {SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native'
 import {isIphoneX} from 'react-native-iphone-x-helper'
 import {LinearGradient} from 'expo'

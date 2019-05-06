@@ -9,8 +9,10 @@ export default class CardFloat extends React.Component {
 			children
 		} = this.props
 		return (
-			<View style={styles.tabBarInfoContainer}>
-				{children}
+			<View>
+				<View style={styles.tabBarInfoContainer}>
+					{children}
+				</View>
 			</View>
 		)
 	}
@@ -33,5 +35,5 @@ const styles = StyleSheet.create({
 		backgroundColor: WHITE_CALM,
 		paddingVertical: 10,
 		paddingHorizontal: WP4
-	},
+	}
 })

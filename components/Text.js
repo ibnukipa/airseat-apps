@@ -13,7 +13,7 @@ const propsType = {
 	weight: PropTypes.number,
 	centered: PropTypes.bool,
 	onPress: PropTypes.func,
-	style: PropTypes.any,
+	style: PropTypes.any
 }
 
 const propsDefault = {
@@ -22,7 +22,7 @@ const propsDefault = {
 	type: 'Raleway',
 	weight: 300,
 	centered: false,
-	onPress: null,
+	onPress: null
 }
 
 const Text = (props) => {

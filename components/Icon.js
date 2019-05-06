@@ -13,19 +13,11 @@ import {
 	MaterialCommunityIcons
 } from '@expo/vector-icons'
 import {GREY} from '../constants/Colors'
-import {ICON_SIZE} from '../constants/Sizes'
+import {ICON_SIZE, WP2, WP4} from '../constants/Sizes'
 import {TOUCH_OPACITY} from '../constants/Styles'
 
-const icons = {
-	Ionicons,
-	AntDesign,
-	Feather,
-	FontAwesome,
-	MaterialIcons,
-	Entypo,
-	EvilIcons,
-	MaterialCommunityIcons
-}
+const icons = {Ionicons, AntDesign, Feather, FontAwesome, MaterialIcons, Entypo, EvilIcons, MaterialCommunityIcons}
+
 const propsType = {
 	key: PropTypes.any,
 	type: PropTypes.oneOf(['AntDesign', 'Feather', 'FontAwesome', 'MaterialIcons', 'Entypo', 'EvilIcons', 'MaterialCommunityIcons', 'Ionicons']),
@@ -44,11 +36,6 @@ const propsDefault = {
 	size: 'small',
 	color: GREY,
 	centered: false
-}
-
-const position = {
-	centered: 'center',
-	right: 'flex-end'
 }
 
 const Icon = (props) => {
@@ -71,9 +58,10 @@ const Icon = (props) => {
 			onLongPress={onLongPress}
 			disabled={!isFunction(onPress) && !isFunction(onLongPress)}
 			style={[{
-				width: currentSize, height: currentSize,
+				width: currentSize + WP4, height: currentSize + WP4,
 				justifyContent: 'center',
 				alignItems: 'center',
+				padding: WP2,
 				alignSelf: centered ? 'center' : 'flex-start'
 			}, style]}
 		>

@@ -5,6 +5,7 @@ import Container from './Container'
 import CardFloat from './CardFloat'
 import Button from './Button'
 import InputText from './InputText'
+import ItemRow from './ItemRow'
 
 export {
 	Text,
@@ -13,5 +14,6 @@ export {
 	CardFloat,
 	Container,
 	Button,
-	InputText
+	InputText,
+	ItemRow
 }

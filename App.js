@@ -29,7 +29,7 @@ export default class App extends React.Component {
 							backgroundColor={PRIMARY}
 							barStyle='light-content'
 						/>
-							<AppNavigator/>
+						<AppNavigator/>
 					</View>
 				</Provider>
 			)

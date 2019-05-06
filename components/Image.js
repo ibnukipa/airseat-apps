@@ -43,7 +43,11 @@ const Image = (props) => {
 				justifyContent: 'center'
 			}, style]}
 		>
-			<RNImage {...this.props} style={[{width: currentSize, height: undefined, aspectRatio}, imageStyle]} source={source}/>
+			<RNImage
+				{...this.props}
+				style={[{width: currentSize, height: undefined, aspectRatio}, imageStyle]}
+				source={source}
+			/>
 		</TouchableOpacity>
 	)
 }

@@ -6,7 +6,7 @@ import {TouchableOpacity} from 'react-native'
 import {LinearGradient} from 'expo'
 import {PRIMARY, PRIMARY_TINT, WHITE, WHITE_CALM} from '../constants/Colors'
 import {WP1, WP2, WP30, WP4} from '../constants/Sizes'
-import {TOUCH_OPACITY} from '../constants/Styles'
+import {DISABLED_OPACITY, TOUCH_OPACITY} from '../constants/Styles'
 import Text from './Text'
 import Icon from './Icon'
 
@@ -16,9 +16,10 @@ const propsType = {
 	text: PropTypes.string,
 	icon: PropTypes.object,
 	centered: PropTypes.bool,
+	disabled: PropTypes.bool,
 	compact: PropTypes.bool,
 	big: PropTypes.bool,
-	onPress: PropTypes.func,
+	onPress: PropTypes.func
 }
 
 const propsDefault = {
@@ -41,11 +42,13 @@ const Button = (props) => {
 		centered,
 		compact,
 		big,
+		disabled,
 		onPress
 	} = props
 	return (
-		<TouchableOpacity activeOpacity={TOUCH_OPACITY} onPress={onPress} style={[{
+		<TouchableOpacity disabled={disabled} activeOpacity={TOUCH_OPACITY} onPress={onPress} style={[{
 			minWidth: compact ? 0 : WP30,
+			opacity: disabled ? DISABLED_OPACITY : 1,
 			...Platform.select({
 				ios: {
 					shadowColor: 'black',
@@ -56,7 +59,7 @@ const Button = (props) => {
 				android: {
 					elevation: 20
 				}
-			}),
+			})
 		}, style]}>
 			<LinearGradient
 				start={start}
@@ -64,7 +67,7 @@ const Button = (props) => {
 				colors={colors}
 				style={[
 					{
-						backgroundColor, paddingHorizontal: compact ? WP2 : WP4, paddingVertical: compact ? WP1 : big ? WP4 : WP2,
+						backgroundColor, paddingHorizontal: compact ? 0 : WP2, paddingVertical: compact ? 0 : big ? WP4 : WP1,
 						justifyContent: centered ? 'center' : 'space-between', borderRadius: 8,
 						flexDirection: 'row'
 					}
@@ -80,7 +83,11 @@ const Button = (props) => {
 						text && (
 							<Text
 								color={WHITE} weight={big ? 500 : null} size={big ? 'large' : compact ? 'mini' : null}
-								style={{marginLeft: icon ? compact ? WP1 : WP4 : 0}}
+								style={{
+									marginVertical: icon ? compact ? WP1 : WP2 : 0,
+									marginRight: WP2,
+									marginLeft: icon ? compact ? 0 : WP1 : 0
+								}}
 							>
 								{text}
 							</Text>

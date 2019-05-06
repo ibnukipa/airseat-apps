@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-	ScrollView,
-	StyleSheet,
-	View
-} from 'react-native'
+import {ScrollView, StyleSheet, View} from 'react-native'
 import {connect} from 'react-redux'
 import {Text, Image, CardFloat, Container, Button, InputText} from '../components'
 import {GREY_LIGHT, WHITE, WHITE05, WHITE_CALM} from '../constants/Colors'
@@ -55,24 +51,24 @@ class AirplaneScreen extends React.Component {
 				} else if (i === 0 && seatBlockCol !== 1) {
 					seatsInRow[seatBlockCol - 1] = {
 						type: seatType,
-						number: totalSeats,
+						number: totalSeats
 					}
 					totalSeats++
 				} else if (i !== 0 && i !== seatBlockLength - 1) {
 					seatsInRow[lastIndexBlock + 1] = {
 						type: seatType,
-						number: totalSeats,
+						number: totalSeats
 					}
 					totalSeats++
 					seatsInRow[lastIndexBlock + seatBlockCol] = {
 						type: seatType,
-						number: totalSeats,
+						number: totalSeats
 					}
 					totalSeats++
-				} else if(i === seatBlockLength - 1 && seatBlockCol !== 1) {
+				} else if (i === seatBlockLength - 1 && seatBlockCol !== 1) {
 					seatsInRow[lastIndexBlock + 1] = {
 						type: seatType,
-						number: totalSeats,
+						number: totalSeats
 					}
 					totalSeats++
 				}
@@ -101,7 +97,7 @@ class AirplaneScreen extends React.Component {
 				} else if (i === seatBlockLength - 1) {
 					seatsInRow[lastIndexBlock + seatBlockCol] = {
 						type: seatType,
-						number: totalSeats,
+						number: totalSeats
 					}
 					totalSeats++
 				}
@@ -125,7 +121,7 @@ class AirplaneScreen extends React.Component {
 					for (let i = lastIndexBlock + 2; i < (lastIndexBlock + seatBlockCol); i++) {
 						seatsInRow[i] = {
 							type: seatType,
-							number: totalSeats,
+							number: totalSeats
 						}
 						totalSeats++
 					}
@@ -160,7 +156,8 @@ class AirplaneScreen extends React.Component {
 					<View style={styles.airplane}>
 						<View style={styles.airplaneCabin}>
 							<View style={styles.airplaneCabinFront}>
-								<Button onPress={() => navigation.navigate('AirplaneSeatMap')} icon={{name: 'edit', type: 'AntDesign'}} text='Seat Map'/>
+								<Button onPress={() => navigation.navigate('AirplaneSeatMap')} icon={{name: 'edit', type: 'AntDesign'}}
+								        text='Seat Map'/>
 							</View>
 							<View style={styles.airplaneCabinSeparator}/>
 							<View style={styles.airplaneCabinSeat}>
@@ -215,7 +212,7 @@ class AirplaneScreen extends React.Component {
 					<View>
 						<InputText
 							label='Number of passengers'
-							keyboardType='numeric'
+							keyboardType='number-pad'
 							onChangeText={(passengers) => this.setState({passengers})}
 							placeholder='0'
 							size='massive'
