@@ -77,7 +77,7 @@ class AirplaneScreen extends React.Component {
 			seats[row] = seatsInRow
 			row++
 		}
-		console.log(seats)
+
 		//Window seat
 		seatType = SEAT_TYPE.WINDOW
 		row = 0
