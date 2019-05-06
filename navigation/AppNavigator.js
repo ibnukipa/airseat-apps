@@ -2,16 +2,16 @@ import React from 'react'
 import {View} from 'react-native'
 import {createAppContainer, createStackNavigator} from 'react-navigation'
 import { fromRight } from 'react-navigation-transitions'
-import HomeScreen from '../screens/HomeScreen'
-import GenerateScreen from '../screens/GenerateScreen'
+import AirplaneScreen from '../screens/AirplaneScreen'
+import AirplaneSeatMapScreen from '../screens/AirplaneSeatMapScreen'
 import {PRIMARY, WHITE} from '../constants/Colors'
 
 export const HomeStack = createStackNavigator({
-	Home: {
-		screen: HomeScreen
+	Airplane: {
+		screen: AirplaneScreen
 	},
-	Generate: {
-		screen: GenerateScreen
+	AirplaneSeatMap: {
+		screen: AirplaneSeatMapScreen
 	}
 }, {
 	headerMode: 'float',

@@ -8,7 +8,7 @@ import {Text, CardFloat} from '../components'
 import {WHITE} from '../constants/Colors'
 import {WP4} from '../constants/Sizes'
 
-export default class GenerateScreen extends React.Component {
+export default class AirplaneSeatMapScreen extends React.Component {
 	static navigationOptions = {
 		headerTitle: (
 			<Text color={WHITE}>Seating</Text>

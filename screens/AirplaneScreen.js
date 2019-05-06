@@ -1,17 +1,16 @@
 import React from 'react'
 import {
-	Platform,
 	ScrollView,
 	StyleSheet,
 	View
 } from 'react-native'
 import {Text, Image, CardFloat, Container, Button, InputText} from '../components'
-import {GREY_LIGHT, WHITE, WHITE05, WHITE_CALM} from '../constants/Colors'
-import {HP10, HP100, HP2, HP20, HP5, HP80, WP1, WP10, WP100, WP2, WP20, WP25, WP4, WP50} from '../constants/Sizes'
+import {GREY, GREY_CALM, GREY_LIGHT, WHITE, WHITE05, WHITE_CALM} from '../constants/Colors'
+import {HP5, HP80, WP1, WP100, WP2, WP20, WP25, WP4, WP50} from '../constants/Sizes'
 import {times, map, reduce, forEach, slice} from 'lodash-es'
 import {SEAT_BG_COLOR, SEAT_BORDER_COLOR, SEAT_TYPE} from '../constants/Airplane'
 
-export default class HomeScreen extends React.Component {
+export default class AirplaneScreen extends React.Component {
 	constructor(props) {
 		super(props)
 	}
@@ -19,8 +18,8 @@ export default class HomeScreen extends React.Component {
 	state = {
 		seatBlocks: [
 			[3, 2],
-			[4, 3],
-			[2, 3],
+			[4, 30],
+			[2, 30],
 			[3, 4]
 		],
 		passengers: '30'
@@ -29,10 +28,21 @@ export default class HomeScreen extends React.Component {
 	static navigationOptions = {
 		headerTitle: (
 			<View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-				<Image aspectRatio={315 / 85} imageStyle={{height: HP5}}
-				       source={require('../assets/images/logo_text_invert.png')}/>
+				<Image
+					aspectRatio={315 / 85}
+					imageStyle={{height: HP5}}
+					source={require('../assets/images/logo_text_invert.png')}
+				/>
 			</View>
 		)
+	}
+
+	_calculateTotalCabinSeat = (seatBlocks) => {
+		return reduce(seatBlocks, (result, seat) => ({
+			totalColumns: result.totalColumns + seat[0],
+			totalSeat: result.totalSeat + (seat[0] * seat[1]),
+			totalMaxRow: seat[1] > result.totalMaxRow ? seat[1] : result.totalMaxRow
+		}), {totalColumns: 0, totalSeat: 0, totalMaxRow: 0})
 	}
 
 	_autoCheckIn = (seatBlocks, passengers) => {
@@ -56,32 +66,24 @@ export default class HomeScreen extends React.Component {
 					seatsInRow[seatBlockCol - 1] = {
 						type: seatType,
 						number: totalSeats,
-						passengerNumber: passengers > 0 ? totalSeats : 0
 					}
-					passengers--
 					totalSeats++
 				} else if (i !== 0 && i !== seatBlockLength - 1) {
 					seatsInRow[lastIndexBlock + 1] = {
 						type: seatType,
 						number: totalSeats,
-						passengerNumber: passengers > 0 ? totalSeats : 0
 					}
-					passengers--
 					totalSeats++
 					seatsInRow[lastIndexBlock + seatBlockCol] = {
 						type: seatType,
 						number: totalSeats,
-						passengerNumber: passengers > 0 ? totalSeats : 0
 					}
-					passengers--
 					totalSeats++
 				} else {
 					seatsInRow[lastIndexBlock + 1] = {
 						type: seatType,
 						number: totalSeats,
-						passengerNumber: passengers > 0 ? totalSeats : 0
 					}
-					passengers--
 					totalSeats++
 				}
 				lastIndexBlock += seatBlockCol
@@ -101,16 +103,16 @@ export default class HomeScreen extends React.Component {
 				const seatBlockRow = seatBlockProperties[1]
 				if (row >= seatBlockRow) {
 				} else if (i === 0) {
-					seatsInRow[0] = {type: seatType, number: totalSeats, passengerNumber: passengers > 0 ? totalSeats : 0}
-					passengers--
+					seatsInRow[0] = {
+						type: seatType,
+						number: totalSeats
+					}
 					totalSeats++
 				} else if (i === seatBlockLength - 1) {
 					seatsInRow[lastIndexBlock + seatBlockCol] = {
 						type: seatType,
 						number: totalSeats,
-						passengerNumber: passengers > 0 ? totalSeats : 0
 					}
-					passengers--
 					totalSeats++
 				}
 				lastIndexBlock += seatBlockCol
@@ -131,8 +133,10 @@ export default class HomeScreen extends React.Component {
 				if (row >= seatBlockRow) {
 				} else if (seatBlockCol > 2) {
 					for (let i = lastIndexBlock + 2; i < (lastIndexBlock + seatBlockCol); i++) {
-						seatsInRow[i] = {type: seatType, number: totalSeats, passengerNumber: passengers > 0 ? totalSeats : 0}
-						passengers--
+						seatsInRow[i] = {
+							type: seatType,
+							number: totalSeats,
+						}
 						totalSeats++
 					}
 				}
@@ -146,14 +150,6 @@ export default class HomeScreen extends React.Component {
 			row++
 		}
 		return seatBlocksWithPassenger
-	}
-
-	_calculateTotalCabinSeat = (seatBlocks) => {
-		return reduce(seatBlocks, (result, seat) => ({
-			totalColumns: result.totalColumns + seat[0],
-			totalSeat: result.totalSeat + (seat[0] * seat[1]),
-			totalMaxRow: seat[1] > result.totalMaxRow ? seat[1] : result.totalMaxRow
-		}), {totalColumns: 0, totalSeat: 0, totalMaxRow: 0})
 	}
 
 	render() {
@@ -179,31 +175,34 @@ export default class HomeScreen extends React.Component {
 									map(seatBlocks, (containerSeat, i) => {
 										const totalColumnsInBlock = containerSeat[0]
 										const totalRowsInBlock = containerSeat[1]
-										const dimensionOfSeat = `${(100 / totalColumnsInBlock) - 1}%`
+										const dimensionOfSeat = `${(100 / totalColumnsInBlock)}%`
 										return (
 											<View
 												key={i}
 												style={[styles.airplaneSeatContainer, {width: `${widthOfSeat * totalColumnsInBlock}%`}]}
 											>
+												<View style={{width: '100%', marginBottom: 5}}>
+													<Text color={GREY_CALM} centered size='tiny' type='Graduate'>[{totalColumnsInBlock}, {totalRowsInBlock}]</Text>
+												</View>
 												{
 													times(totalRowsInBlock, (rowIndex) => {
 														return (
 															<View key={`${i}${rowIndex}`} style={styles.airplaneSeatRow}>
 																{
 																	times(totalColumnsInBlock, (colIndex) => {
-																		const {type: seatType, passengerNumber} = wmaSeatsWithPassenger[i][rowIndex][colIndex]
+																		const {type: seatType, number: seatSortedNumber} = wmaSeatsWithPassenger[i][rowIndex][colIndex]
 																		return (
 																			<View
 																				key={`${i}${colIndex}`}
 																				style={[styles.airplaneSeat, {width: dimensionOfSeat}]}
 																			>
 																				<View style={[styles.square, {
-																					backgroundColor: SEAT_BG_COLOR[seatType],
-																					borderColor: SEAT_BORDER_COLOR[seatType]
+																					backgroundColor: seatSortedNumber <= passengers ? SEAT_BG_COLOR[seatType] : SEAT_BG_COLOR[SEAT_TYPE.EMPTY],
+																					borderColor: seatSortedNumber <= passengers ? SEAT_BORDER_COLOR[seatType] : SEAT_BG_COLOR[SEAT_TYPE.EMPTY]
 																				}]}>
 																					{
-																						passengerNumber > 0 &&
-																						<Text size='tiny' type='Graduate' centered>{passengerNumber}</Text>
+																						seatSortedNumber <= passengers &&
+																						<Text size='tiny' type='Graduate' centered>{seatSortedNumber}</Text>
 																					}
 																				</View>
 																			</View>
@@ -223,7 +222,7 @@ export default class HomeScreen extends React.Component {
 					</View>
 				</ScrollView>
 				<CardFloat>
-					<View style={{flexDirection: 'row'}}>
+					<View>
 						<InputText
 							label='Number of passengers'
 							keyboardType='numeric'
@@ -245,6 +244,7 @@ const styles = StyleSheet.create({
 		padding: WP1
 	},
 	airplaneHead: {
+		marginTop: -WP25,
 		backgroundColor: WHITE05,
 		height: WP50,
 		borderTopRightRadius: WP100,
