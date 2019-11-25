@@ -16,7 +16,7 @@ AIRSEAT uses a number of open source projects to work properly:
 AIRSEAT requires [Node.js](https://nodejs.org/).
 Install the dependencies and devDependencies and start Metro Bundler.
 ```sh
-$ cd dillinger
+$ cd airplane-seating-algorithm
 $ yarn install
 $ yarn start
 ```
