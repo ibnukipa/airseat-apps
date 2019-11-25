@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Header} from 'react-navigation'
 import {SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native'
 import {isIphoneX} from 'react-native-iphone-x-helper'
-import {LinearGradient} from 'expo'
+import { LinearGradient } from 'expo-linear-gradient';
 import {PRIMARY, PRIMARY_TINT, WHITE_CALM} from '../constants/Colors'
 
 const propsType = {

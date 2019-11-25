@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Platform, View} from 'react-native'
 import {noop} from 'lodash-es'
 import {TouchableOpacity} from 'react-native'
-import {LinearGradient} from 'expo'
+import { LinearGradient } from 'expo-linear-gradient';
 import {PRIMARY, PRIMARY_TINT, WHITE, WHITE_CALM} from '../constants/Colors'
 import {WP1, WP2, WP30, WP4} from '../constants/Sizes'
 import {DISABLED_OPACITY, TOUCH_OPACITY} from '../constants/Styles'

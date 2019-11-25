@@ -4,7 +4,7 @@
     "slug": "airseat",
     "description": "Airplane Seating Arrangement Algorithm with WMA Strategy",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
       "android"
