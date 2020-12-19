@@ -1,7 +1,6 @@
 import React from 'react'
 import SortableList from 'react-native-sortable-list'
 import {StyleSheet, View} from 'react-native'
-import {NavigationEvents} from 'react-navigation'
 import {reduce} from 'lodash-es'
 import {connect} from 'react-redux'
 import {Text, CardFloat, Container, Button, InputText, ItemRow} from '../components'
@@ -21,6 +20,18 @@ class AirplaneSeatMapScreen extends React.Component {
 		headerTitle: (
 			<Text weight={500} size='large' color={WHITE}>SEAT MAP</Text>
 		)
+	}
+
+	componentDidMount() {
+		this._unsubscribe = this.props.navigation.addListener('focus', () => {
+			this.setState({
+				seatBlocks: this.props.seatMap || []
+			})
+		});
+	}
+
+	componentWillUnmount() {
+		this._unsubscribe();
 	}
 
 	_applySeatMap = () => {
@@ -63,13 +74,6 @@ class AirplaneSeatMapScreen extends React.Component {
 		} = this.state
 		return (
 			<Container>
-				<NavigationEvents
-					onDidFocus={payload => {
-						this.setState({
-							seatBlocks: this.props.seatMap || []
-						})
-					}}
-				/>
 				<View style={styles.cardContainer}>
 					<View style={styles.seatFormContainer}>
 						<View style={styles.seatInputContainer}>

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Header} from 'react-navigation'
 import {SafeAreaView, KeyboardAvoidingView, Platform} from 'react-native'
 import {isIphoneX} from 'react-native-iphone-x-helper'
 import { LinearGradient } from 'expo-linear-gradient';
@@ -31,7 +30,6 @@ const Container = (props) => {
 		<SafeAreaView style={{flex: 1, backgroundColor: safeAreaBackgroundColor}}>
 			<KeyboardAvoidingView
 				style={{flex: 1}}
-				keyboardVerticalOffset={Platform.OS === 'ios' ? Header.HEIGHT + (isIphoneX() ? 20 : 0) : 0}
 				behavior={Platform.OS === 'ios' ? 'padding' : null}
 				enabled
 			>
