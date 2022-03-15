@@ -21,7 +21,7 @@
     "expo-asset": "~8.2.1",
     "expo-font": "~8.4.0",
     "expo-linear-gradient": "~8.4.0",
-    "lodash-es": "^4.17.11",
+    "lodash-es": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.0.tar.gz",
