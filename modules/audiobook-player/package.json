@@ -1,0 +1,31 @@
+{
+  "name": "audiobook-player",
+  "version": "1.0.0",
+  "description": "React Native module for audiobook playback with DRM support",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf build",
+    "lint": "tslint src/**/*.ts",
+    "test": "jest"
+  },
+  "keywords": [
+    "react-native",
+    "audiobook",
+    "player",
+    "drm",
+    "exoplayer"
+  ],
+  "repository": "https://github.com/redesign/bookstore-ai",
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/redesign/bookstore-ai#readme",
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "@types/react-native": "^0.63.0"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.60.0"
+  }
+}
