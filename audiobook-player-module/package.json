@@ -1,0 +1,44 @@
+{
+  "name": "audiobook-player-module",
+  "version": "1.0.0",
+  "description": "Expo module for audiobook playback with DRM support",
+  "main": "build/AudiobookPlayerModule.js",
+  "types": "build/AudiobookPlayerModule.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "preinstall": "expo-module preinstall"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "audiobook",
+    "drm",
+    "exoplayer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/audiobook-player-module.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/audiobook-player-module/issues"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@expo/config-plugins": "~7.8.4",
+    "@expo/prebuild-config": "~6.7.0",
+    "expo-module-scripts": "^3.4.7"
+  },
+  "peerDependencies": {
+    "expo": "*"
+  },
+  "expo": {
+    "name": "audiobook-player-module",
+    "platforms": [
+      "android"
+    ]
+  }
+}
